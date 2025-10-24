@@ -13,7 +13,7 @@ function App() {
     { key: 'jesus', label: 'Jesus Ballesteros', src: 'https://hoja-de-vida-jesus-reactt-ivqk.vercel.app/' },
     { key: 'andres', label: 'Andres Fernando', src: 'https://hoja-de-vida-andres-react.vercel.app/' },
   ];
-
+/**/ 
   const handleSelect = (selectedKey) => {
     setActiveKey(selectedKey);
     const selectedPortfolio = portfolios.find(p => p.key === selectedKey);
