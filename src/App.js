@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Nav, Container, Card } from 'react-bootstrap';
 import './App.css';
 
 function App() {
+  const [activeKey, setActiveKey] = useState('Lisandro');
+  const [iframeSrc, setIframeSrc] = useState('http://hoja-de-vida-lisandro-reactt-gyoe.vercel.app');
+
+  const portfolios = [
+    { key: 'ramiro', label: 'Ramiro Barrios', src: 'portfolios/ramiro/index.html' },
+    { key: 'luis', label: 'Luis Yepes', src: 'https://hoja-dev-ida-luis-yepes-react-biwl.vercel.app/' },
+    { key: 'lisandro', label: 'Lisandro Jose', src: 'http://hoja-de-vida-lisandro-reactt-gyoe.vercel.app/' },
+    { key: 'jesus', label: 'Jesus Ballesteros', src: 'https://hoja-de-vida-jesus-reactt-ivqk.vercel.app/' },
+    { key: 'andres', label: 'Andres Fernando', src: 'https://hoja-de-vida-andres-react.vercel.app/' },
+  ];
+
+  const handleSelect = (selectedKey) => {
+    setActiveKey(selectedKey);
+    const selectedPortfolio = portfolios.find(p => p.key === selectedKey);
+    setIframeSrc(selectedPortfolio.src);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="py-4 bg-light">
+      {/* Encabezado */}
+      <h1 className="text-center mb-4 text-primary">🌐 Portafolios en Iframe</h1>
+
+      {/* Menú con enlaces */}
+      <Nav variant="pills" className="justify-content-center flex-wrap mb-4" activeKey={activeKey} onSelect={handleSelect}>
+        {portfolios.map(portfolio => (
+          <Nav.Item key={portfolio.key}>
+            <Nav.Link eventKey={portfolio.key}>{portfolio.label}</Nav.Link>
+          </Nav.Item>
+        ))}
+      </Nav>
+
+      {/* Contenedor del iframe */}
+      <Card className="shadow">
+        <Card.Body>
+          <iframe
+            id="mi_iframe"
+            name="mi_iframe"
+            src={iframeSrc}
+            className="responsive-iframe"
+            title="Portfolio Iframe"
+          />
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
 
