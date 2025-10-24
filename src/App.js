@@ -34,7 +34,7 @@ function App() {
         ))}
       </Nav>
 
-      {/* Contenedor del iframe */}
+      {/* Contenedor del iframedd */}
       <Card className="shadow">
         <Card.Body>
           <iframe
